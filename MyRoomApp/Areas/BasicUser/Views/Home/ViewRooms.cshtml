@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Room>
+@{
+    ViewData["Title"] = "User ViewRooms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h1>User ViewRooms View</h1>
+</div>
+
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th>Id</th>
+                <th>Room Name</th>
+                <th>Size</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Model)
+            {
+                <tr class="table-info">
+                    <td>@room.Id</td>
+                    <td>@room.Name</td>
+                    <td>@room.Size</td>
+                    <td>@room.Status</td>
+                    @if(room.Status!="Full")
+                    {
+                        <td><a asp-area="BasicUser" asp-controller="Home" asp-action="BookRoom" asp-route-id="@room.Id">Book Room</a></td>
+                    } else
+                    {
+                        <td></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
